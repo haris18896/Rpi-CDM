@@ -1,0 +1,126 @@
+
+npython:S116x"RRename this field "TestADCReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(–…»—ûÿÿÿÿ
+mpython:S116="QRename this field "DivlEnReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(¦ó…¿øÿÿÿÿ
+npython:S116\"RRename this field "Reserved20" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ğ¥‰Ûıÿÿÿÿ
+npython:S116F"RRename this field "ControlReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(…°ëÿÿÿÿÿ
+npython:S116U"RRename this field "Reserved11" to match the regular expression ^[_a-z][_a-z0-9]*$.(Üó½›øÿÿÿÿ
+ipython:S116o"SRename this field "TestSel2Reg" to match the regular expression ^[_a-z][_a-z0-9]*$.(†¥R
+npython:S116q"WRename this field "TestPinValueReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(“Ô„Ë
+ipython:S116a"RRename this field "Reserved22" to match the regular expression ^[_a-z][_a-z0-9]*$.(­­µº
+ppython:S116p"TRename this field "TestPinEnReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(œõÂÿÿÿÿÿ
+rpython:S116+"VRename this field "PICC_SElECTTAG" to match the regular expression ^[_a-z][_a-z0-9]*$.(Üµî´ıÿÿÿÿ
+hpython:S116I"RRename this field "Reserved01" to match the regular expression ^[_a-z][_a-z0-9]*$.(—ê‰b
+npython:S116m"RRename this field "Reserved30" to match the regular expression ^[_a-z][_a-z0-9]*$.( ©§Šşÿÿÿÿ
+ipython:S116z"RRename this field "Reserved32" to match the regular expression ^[_a-z][_a-z0-9]*$.(¶€’ì
+lpython:S116G"URename this field "BitFramingReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(›ÊÁ²
+npython:S116|"RRename this field "Reserved34" to match the regular expression ^[_a-z][_a-z0-9]*$.(Àğ·¤ıÿÿÿÿ
+hpython:S116M"QRename this field "TxModeReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(×Ò‹ˆ
+ipython:S116B"RRename this field "Status2Reg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ûº©
+ppython:S116O"TRename this field "TxControlReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ûÅÆûÿÿÿÿ
+hpython:S116W"QRename this field "MifareReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ŞÒœƒ
+ipython:S116_"RRename this field "Reserved21" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ö²™ç
+jpython:S116`"SRename this field "ModWidthReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(óÒù
+kpython:S116E"URename this field "WaterLevelReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ñ¥±T
+mpython:S116Z"VRename this field "SerialSpeedReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ŞåÒ²
+gpython:S116Q"PRename this field "TxSelReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(‰×Úê
+npython:S116t"RRename this field "VersionReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(…ˆŞ«üÿÿÿÿ
+gpython:S116b"PRename this field "RFCfgReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(˜•ú¢
+mpython:S116?"QRename this field "DivIrqReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(äíÿÿÿÿÿ
+mpython:S116P"QRename this field "TxAutoReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ú’ËËûÿÿÿÿ
+lpython:S116^"URename this field "CRCResultRegL" to match the regular expression ^[_a-z][_a-z0-9]*$.(µ¼§
+ipython:S116s"SRename this field "AutoTestReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(”«
+lpython:S116]"URename this field "CRCResultRegM" to match the regular expression ^[_a-z][_a-z0-9]*$.(¬ˆú
+mpython:S116e"QRename this field "ModGsPReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(à×ÄÁûÿÿÿÿ
+jpython:S116i"SRename this field "TReloadRegL" to match the regular expression ^[_a-z][_a-z0-9]*$.(©èÎ‚
+ipython:S116V"RRename this field "Reserved12" to match the regular expression ^[_a-z][_a-z0-9]*$.(­ü˜¹
+opython:S116w"SRename this field "TestDAC2Reg" to match the regular expression ^[_a-z][_a-z0-9]*$.(¤èª˜ùÿÿÿÿ
+upython:S116j"YRename this field "TCounterValueRegH" to match the regular expression ^[_a-z][_a-z0-9]*$.(·İ¨Áøÿÿÿÿ
+npython:S116y"RRename this field "Reserved31" to match the regular expression ^[_a-z][_a-z0-9]*$.(ËªËüÿÿÿÿ
+ipython:S116X"RRename this field "Reserved13" to match the regular expression ^[_a-z][_a-z0-9]*$.(ÖÂº
+jpython:S116C"SRename this field "FIFODataReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(Í…Ûê
+jpython:S116n"SRename this field "TestSel1Reg" to match the regular expression ^[_a-z][_a-z0-9]*$.(½µ›¨
+fpython:S116H"ORename this field "CollReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ñ“¨ó
+lpython:S116@"PRename this field "ErrorReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(îŒƒüÿÿÿÿ
+npython:S116r"RRename this field "TestBusReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(şÙ›şÿÿÿÿ
+rpython:S116S"VRename this field "RxThresholdReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(í‰×›şÿÿÿÿ
+gpython:S116d"PRename this field "CWGsPReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(¿Í¯½
+npython:S116Y"RRename this field "Reserved14" to match the regular expression ^[_a-z][_a-z0-9]*$.(¾‹Ü¡úÿÿÿÿ
+gpython:S116f"PRename this field "TModeReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ã½ı“
+npython:S116>"RRename this field "CommIrqReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(…Á¹ùûÿÿÿÿ
+ipython:S116K"RRename this field "Reserved10" to match the regular expression ^[_a-z][_a-z0-9]*$.(´¾Šÿ
+mpython:S116N"QRename this field "RxModeReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(š—â˜ÿÿÿÿÿ
+lpython:S116T"PRename this field "DemodReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ã´Ïıÿÿÿÿ
+ipython:S116<"RRename this field "CommIEnReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ì±‹
+qpython:S116g"URename this field "TPrescalerReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(õº°ûÿÿÿÿ
+qpython:S116u"URename this field "AnalogTestReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(çşˆ›şÿÿÿÿ
+npython:S116:"RRename this field "Reserved00" to match the regular expression ^[_a-z][_a-z0-9]*$.(İòÍÃøÿÿÿÿ
+gpython:S116R"PRename this field "RxSelReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(á»§
+jpython:S116h"SRename this field "TReloadRegH" to match the regular expression ^[_a-z][_a-z0-9]*$.(ó•Ï×
+ipython:S116A"RRename this field "Status1Reg" to match the regular expression ^[_a-z][_a-z0-9]*$.(ÆıÍ£
+npython:S116{"RRename this field "Reserved33" to match the regular expression ^[_a-z][_a-z0-9]*$.(¡Æ×ÿÿÿÿÿ
+opython:S116v"SRename this field "TestDAC1Reg" to match the regular expression ^[_a-z][_a-z0-9]*$.(­±ÿûÿÿÿÿ
+upython:S116k"YRename this field "TCounterValueRegL" to match the regular expression ^[_a-z][_a-z0-9]*$.(ĞÉ§ùÿÿÿÿ
+jpython:S116c"NRename this field "GsNReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(¯¯‰üÿÿÿÿ
+kpython:S116D"TRename this field "FIFOLevelReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ûú›Œ
+jpython:S116~"NRename this field "serNum" to match the regular expression ^[_a-z][_a-z0-9]*$.(Â×ş¹úÿÿÿÿ
+ipython:S116;"RRename this field "CommandReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áù¤Â
+kpython:S116L"ORename this field "ModeReg" to match the regular expression ^[_a-z][_a-z0-9]*$.(–»¢óùÿÿÿÿ
+npython:S117€"VRename this parameter "debugLevel" to match the regular expression ^[_a-z][a-z0-9_]*$.(øáˆ‹
+vpython:S117Š"YRename this local variable "gpioMode" to match the regular expression ^[_a-z][a-z0-9_]*$.(ˆ¯–ˆøÿÿÿÿ
+kpython:S100›"TRename method "MFRC522_Reset" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Šé/
+lpython:S100"TRename method "Write_MFRC522" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ôÔ´³
+ppython:S100¡"SRename method "Read_MFRC522" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.( ÕÄüÿÿÿÿ
+lpython:S100¥"TRename method "Close_MFRC522" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¹âŸî
+hpython:S100©"QRename method "SetBitMask" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(•¼‚
+kpython:S100­"SRename method "ClearBitMask" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(²şĞ—
+mpython:S100±"PRename method "AntennaOn" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¶Âšüÿÿÿÿ
+ipython:S100¶"QRename method "AntennaOff" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(…Š¢ö
+qpython:S117º"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(×–ç¦
+ppython:S117»"XRename this local variable "backLen" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ò¹ù†
+spython:S117½"VRename this local variable "irqEn" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ëğ¹øùÿÿÿÿ
+vpython:S117¿"YRename this local variable "lastBits" to match the regular expression ^[_a-z][a-z0-9_]*$.(¢÷Œşÿÿÿÿ
+qpython:S117¹"TRename this parameter "sendData" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÿ€™òÿÿÿÿÿ
+ppython:S117¾"XRename this local variable "waitIRq" to match the regular expression ^[_a-z][a-z0-9_]*$.(–İ¼
+rpython:S100¹"URename method "MFRC522_ToCard" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ÿ€™òÿÿÿÿÿ
+rpython:S3776¹"TRefactor this function to reduce its Cognitive Complexity from 35 to the 15 allowed.(ÿ€™òÿÿÿÿÿ
+upython:S117ş"XRename this local variable "TagType" to match the regular expression ^[_a-z][a-z0-9_]*$.(ôù¦æùÿÿÿÿ
+vpython:S117ı"YRename this local variable "backBits" to match the regular expression ^[_a-z][a-z0-9_]*$.(«İÉˆùÿÿÿÿ
+vpython:S117ƒ"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(„®¹«şÿÿÿÿ
+kpython:S117û"SRename this parameter "reqMode" to match the regular expression ^[_a-z][a-z0-9_]*$.(çØº€
+npython:S100û"VRename method "MFRC522_Request" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(çØº€
+qpython:S117•"YRename this local variable "backBits" to match the regular expression ^[_a-z][a-z0-9_]*$.(õÆŞ§
+qpython:S117‹"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(×–ç¦
+tpython:S117"WRename this local variable "serNum" to match the regular expression ^[_a-z][a-z0-9_]*$.(Â×ş¹úÿÿÿÿ
+ypython:S117Œ"\Rename this local variable "serNumCheck" to match the regular expression ^[_a-z][a-z0-9_]*$.(ğİïüÿÿÿÿ
+tpython:S100Š"WRename method "MFRC522_Anticoll" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ì´÷¢üÿÿÿÿ
+ppython:S117£"SRename this parameter "pIndata" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÁÍ¦üÿÿÿÿ
+vpython:S117±"YRename this local variable "pOutData" to match the regular expression ^[_a-z][a-z0-9_]*$.(èöƒÎşÿÿÿÿ
+opython:S100£"RRename method "CalulateCRC" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ÁÍ¦üÿÿÿÿ
+qpython:S117·"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(×–ç¦
+upython:S117Â"XRename this local variable "backLen" to match the regular expression ^[_a-z][a-z0-9_]*$.(œ¹™îüÿÿÿÿ
+rpython:S117¿"URename this local variable "pOut" to match the regular expression ^[_a-z][a-z0-9_]*$.(«ã‡‘üÿÿÿÿ
+ipython:S117¶"RRename this parameter "serNum" to match the regular expression ^[_a-z][a-z0-9_]*$.(‡ÙÏ
+
+opython:S100¶"XRename method "MFRC522_SelectTag" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(‡ÙÏ
+
+lpython:S117Ê"URename this parameter "BlockAddr" to match the regular expression ^[_a-z][a-z0-9_]*$.(»ïÚi
+lpython:S117Ê"URename this parameter "Sectorkey" to match the regular expression ^[_a-z][a-z0-9_]*$.(»ïÚi
+kpython:S117Ê"TRename this parameter "authMode" to match the regular expression ^[_a-z][a-z0-9_]*$.(»ïÚi
+vpython:S117Ü"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(ğÑÓøÿÿÿÿ
+upython:S117Ü"XRename this local variable "backLen" to match the regular expression ^[_a-z][a-z0-9_]*$.(ğÑÓøÿÿÿÿ
+ipython:S117Ê"RRename this parameter "serNum" to match the regular expression ^[_a-z][a-z0-9_]*$.(»ïÚi
+jpython:S100Ê"SRename method "MFRC522_Auth" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(»ïÚi
+wpython:S100ç"ZRename method "MFRC522_StopCrypto1" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(œ¡µğÿÿÿÿÿ
+vpython:S117ñ"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(‡Ä™äúÿÿÿÿ
+upython:S117ñ"XRename this local variable "backLen" to match the regular expression ^[_a-z][a-z0-9_]*$.(‡Ä™äúÿÿÿÿ
+rpython:S117ê"URename this parameter "blockAddr" to match the regular expression ^[_a-z][a-z0-9_]*$.(¦ÏËúÿÿÿÿ
+rpython:S117î"URename this local variable "pOut" to match the regular expression ^[_a-z][a-z0-9_]*$.(õ¨©ıÿÿÿÿ
+vpython:S117ë"YRename this local variable "recvData" to match the regular expression ^[_a-z][a-z0-9_]*$.(åôÖ±ÿÿÿÿÿ
+ppython:S100ê"SRename method "MFRC522_Read" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¦ÏËúÿÿÿÿ
+qpython:S117‚"YRename this local variable "backData" to match the regular expression ^[_a-z][a-z0-9_]*$.(«ş“ş
+ppython:S117‚"XRename this local variable "backLen" to match the regular expression ^[_a-z][a-z0-9_]*$.(«ş“ş
+mpython:S117û"URename this parameter "blockAddr" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ë×Óó
+mpython:S117û"URename this parameter "writeData" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ë×Óó
+lpython:S100û"TRename method "MFRC522_Write" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ë×Óó
+tpython:S100–"\Rename method "MFRC522_DumpClassic1K" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(‹É†§
+ppython:S100Ÿ"SRename method "MFRC522_Init" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ê¾®…şÿÿÿÿ
