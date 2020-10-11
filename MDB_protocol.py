@@ -4,9 +4,11 @@ import socket
 import serial
 import cctalk_hopper_init
 import cctalk_hopper_dispense_normal
+import cctalk_hopper_check_dispense_status
 import cctal
 import time
 import sys
+import json
 
 host = "0.0.0.0"
 port = 5127
@@ -102,7 +104,7 @@ def rtc_set(_psir):
         _day = int(str(_day), 16)
     except:
         _json_string = '{"RTCSet": -1}\r\n'
-        g.sock.send(_json_string.encode())
+        sock.send(_json_string.encode())
         return False
 
     # extracting month
@@ -335,7 +337,7 @@ def mdb_bill_accept():
         return False
 
 def mdb_bill_reject():
-    tmp_string=[0x35,0x00,0x35]
+    _tmp_string=[0x35,0x00,0x35]
     print("Message to device")
     lcd.clear()
     lcd.message("Message to device")
@@ -1192,7 +1194,7 @@ def mdb_send_raw_crc(_string):
     _tmp_string.append(mdb_add_crc(_tmp_string))
     print("Message to device")
     mdb_hex_dump(_tmp_string)
-    _result,_response = mdb_send_command(_mp_string,0.002,40)
+    _result,_response = mdb_send_command(_tmp_string,0.002,40)
     if _result:
         print("Message from device")
         mdb_hex_dump(_response)
@@ -1342,7 +1344,8 @@ def server_prel_messages(_lstr):
             print("FAIL")
 
     elif _str.find("KEYPRESS(") != -1:
-        print("Sending KEYPRESS... ")
+        lcd.clear()
+        lcd.message("Sending keypress....")
         if keyboard_sss_keypress(_str):
             print("SUCCESS")
         else:
