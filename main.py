@@ -17,6 +17,7 @@ import sqlite3
 import time
 import datetime
 import MDB_protocol
+import random
 
 
 # from MDB_protocol import server_prel_messages, prel_serial_number, mdb_bill_silent_poll, mdb_bill_prel_messages
@@ -33,14 +34,6 @@ C2 = 16
 C3 = 20
 C4 = 33
 
-enrol = 31
-delet = 32
-inc = 39
-dec = 40
-led = 18
-
-HIGH = 1
-LOW = 0
 
 P_BUTTON = 24 # Button, adapt to your wiring
 
@@ -69,205 +62,6 @@ day_of_week = [
     "Sat"
 ]
 
-#####################################################################################################
-
-def RFID_Read():
-    conn = sqlite3.connect("database.sql")
-    cursor = conn.cursor()
-    reader = SimpleMFRC522()
-
-    try:
-        while True:
-            lcd.clear()
-            lcd.message('Place Card to\nregister')
-            id, text = reader.read()
-
-            cursor.execute("SELECT id FROM users WHERE rfid_uid=" + str(id))
-            result = cursor.fetchone()
-
-            if cursor.rowcount >= 1:
-                lcd.clear()
-                lcd.message("Overwrite\nexisting user?")
-                overwrite = input("Overwite (Y/N)? ")
-
-                if overwrite[0] == 'Y' or overwrite[0] == 'y':
-                    lcd.clear()
-                    lcd.message("Overwriting user.")
-                    time.sleep(1)
-                    sql_insert = "UPDATE users SET name = %s WHERE rfid_uid=%s"
-                    lcd.message("User Overwritten")
-                else:
-                    continue
-            else:
-                sql_insert = "INSERT INTO users (name, rfid_uid) VALUES (%s, %s)"
-            lcd.clear()
-            lcd.message('Enter new name')
-            new_name = input("Name: ")
-
-            cursor.execute(sql_insert, (new_name, id))
-
-            database.commit()
-
-            lcd.clear()
-            lcd.message("User " + new_name + "\nSaved")
-            time.sleep(2)
-    finally:
-        GPIO.cleanup()
-
-        # RFID Write
-def RFID_Write():
-    conn = sqlite3.connect("database.sql")
-    cursor = conn.cursor()
-    reader = SimpleMFRC522()
-
-    try:
-        while True:
-            lcd.clear()
-            lcd.message('Place Card to\ngrant Access')
-            id, text = reader.read()
-
-            cursor.execute("Select id, name FROM users WHERE rfid_uid=" + str(id))
-            result = cursor.fetchone()
-
-            lcd.clear()
-
-            if cursor.rowcount >= 1:
-                lcd.message("Welcome " + result[1])
-                cursor.execute("INSERT INTO Reading_card (user_id) VALUES (%s)", (result[0],))
-                db.commit()
-            else:
-                lcd.message("User does not exist.")
-            time.sleep(2)
-    finally:
-        GPIO.cleanup()
-
-#########################################   Fingerprint   ###############################################################
-
-# Finger Print
-GPIO.setup(enrol, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(delet, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(inc, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(dec, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(led, GPIO.OUT)
-
-# USB/serial converter
-try:
-    f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
-
-    if (f.verifyPassword() == False):
-        lcd.clear()
-        lcd.message("fingerprint error")
-        raise ValueError('The given fingerprint sensor password is wrong!')
-
-except Exception as e:
-    lcd.clear()
-    lcd.message("Exception message" + str(e))
-    print('Exception message: ' + str(e))
-    exit(1)
-
-
-def enrollFinger():
-    lcd.clear()
-    lcd.message("Enrolling Finger...")
-    time.sleep(2)
-    print("waiting for finger....")
-    lcd.clear()
-    lcd.message("Place Finger")
-    while (f.readImage() == False):
-        pass
-    f.convertImage(0x01)  # convert to hexa decimal
-
-    result = f.searchTemplate()
-    positionNumber = result[0]
-    if (positionNumber >= 0):
-        print('Template already exists at position #' + str(positionNumber))
-        lcd.clear()
-        lcd.message("Finger already Exist")
-        time.sleep(2)
-        return
-    print("Remove Finger")
-    lcd.clear()
-    lcd.message("Remove Finger")
-    time.sleep(2)
-    print('Waiting for same finger again...')
-    lcd.clear()
-    lcd.message("Place Finger again")
-    while (f.readImage() == False):
-        pass
-    f.convertImage(0x02)
-
-    if (f.compareCharacteristics() == 0):
-        print("Fingers not match")
-        lcd.clear()
-        lcd.message("Finger not Matched")
-        time.sleep(2)
-        return
-    f.createTemplate()
-    positionNumber = f.storeTemplate()
-    print('Finger enrolled successfully!')
-    lcd.clear()
-    lcd.message("Fnger enrolled successfuly !")
-    lcd.clear()
-    lcd.message("stored at pos: " + str(positionNumber) + "successfully")
-    time.sleep(2)
-
-
-def searchFinger():
-    try:
-        print('Waiting for finger...')
-        while (f.readImage() == False):
-            # pass
-            time.sleep(.5)
-            return
-        f.convertImage(0x01)
-        result = f.searchTemplate()
-        positionNumber = result[0]
-        accuracyScore = result[1]
-
-        if positionNumber == -1:
-            lcd.clear()
-            lcd.message("No match found !")
-            time.sleep(2)
-        else:
-            lcd.clear()
-            lcd.message("Found Template at postion #" + str(positionNumber))
-            time.sleep(2)
-    except Exception as e:
-        lcd.clear()
-        lcd.message("Operation Failed")
-        time.sleep(0.5)
-        lcd.clear()
-        lcd.message("Exception message: " + str(e))
-        exit(1)
-
-
-def deleteFinger():
-    positionNumber = 0
-    count = 0
-    lcd.clear()
-    lcd.message("Delete Finger" + str(count))
-    while GPIO.input(enrol) == True:  # here enrol key means ok
-        if GPIO.input(inc) == False:
-            count = count + 1
-            if count > 1000:
-                count = 1000
-            lcd.clear()
-            lcd.message(str(count))
-            time.sleep(0.2)
-        elif GPIO.input(dec) == False:
-            count = count - 1
-            if count < 0:
-                count = 0
-                lcd.clear()
-                lcd.message(str(count))
-                time.sleep(0.2)
-        positionNumber = count
-        if f.deleteTemplate(positionNumber) == True:
-            lcd.clear()
-            lcd.message("Fingerprint deleted")
-            time.sleep(2)
-
-
 
 ########################################### Keyboard ########################################
 # Keyboard
@@ -275,10 +69,14 @@ def deleteFinger():
     If the C-button is pressed on keypad, the input is reset, and if A-button is pressed
     the input is checked """
 
+conn = sqlite3.connect("database.sql")
+cursor = conn.cursor()
+lcd.clear()
+lcd.message("Database connected successfully")
 
 keypadPressed = -1
-# TODO: Make a Database model for secretCode
-secretCode = "4789"
+cursor.execute("SELECT id FROM users WHERE PIN=" + str(id))
+#SecretCode = "4789"
 input = ""
 
 
@@ -322,40 +120,52 @@ def setAllLines(state):
 
 
 # Checking Special characters , C-button to reset, A-button to check input
-def checkSpecialKeys():
+def checkSpecialKeys(_pin):
     global input
     pressed = False
-
-    GPIO.output(L3, GPIO.HIGH)
-
-    if (GPIO.input(C4) == 1):
+    lcd.clear()
+    lcd.message("Enter the Secret code")
+    cursor.execute("SELECT id FROM users WHERE PIN=" +str(id))
+    secretcode = cursor.fetchone()
+    # using fingerprint or RFID
+    lcd.clear()
+    fp_or_rfid = lcd.message("Press A for using Fingerprint and B for RFID (A/B)")
+    if cursor.rowcount >= 1:
         lcd.clear()
-        lcd.message("Input reset!")
-        pressed = True
+        lcd.message("Code Correct! ")
+        time.sleep(.5)
+        if fp_or_rfid[0] == 'A' or fp_or_rfid[0] == 'a':
+            lcd.clear()
+            lcd.message("place your finger")
+            searchFinger()
+            if searchFinger:
+                pass
+            else:
+                return False
+        elif fp_or_rfid[0] == 'B' or fp_or_rfid[0] == 'b':
+            lcd.clear()
+            lcd.message("place your card Tag")
+            RFID_Read()
+            if RFID_Read:
+                pass
+            else:
+                return False
+    else:
+        lcd.clear()
+        lcd.message("Code Incorrect! ")
+        GSM()
+        if GSM:
+            pass
+        else:
+            return False
+    pressed = True
 
     GPIO.output(L3, GPIO.LOW)
-    GPIO.output(L1, GPIO.HIGH)
 
-    if (not pressed and GPIO.input(C4) == 1):
-        lcd.clear()
-        lcd.message("Enter the Secret code")
+    if pressed:
+        input = ""
 
-        if input == secretCode:
-            lcd.clear()
-            lcd.message("Code Correct! ")
-            # TODO: Access to the Account
-        else:
-            lcd.clear()
-            lcd.message("Code Incorrect! ")
-            # TODO: Sending a 4 digit pin to user phone usiing GSM
-        pressed = True
-
-        GPIO.output(L3, GPIO.LOW)
-
-        if pressed:
-            input = ""
-
-        return pressed
+    return pressed
 
 
 # reads the columns and appends the value , that corresponds to the buttoon , to a variable
@@ -374,65 +184,224 @@ def readLine(line, characters):
     GPIO.output(line, GPIO.LOW)
 
 
-#########################################   Sending Message   ###############################################################
 
-def setup():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(P_BUTTON, GPIO.IN, GPIO.PUD_UP)
+####################################    RFID  read and Write  #####################################################
 
-SERIAL_PORT = "/dev/ttyS0"    # Raspberry Pi 3
+def RFID_Read():
+    conn = sqlite3.connect("database.sql")
+    cursor = conn.cursor()
+    reader = SimpleMFRC522()
 
-ser = serial.Serial(SERIAL_PORT, baudrate = 9600, timeout = 5)
-setup()
-ser.write("AT+CMGF=1\r") # set to text mode
-time.sleep(3)
-ser.write('AT+CMGDA="DEL ALL"\r') # delete all SMS
-time.sleep(3)
-reply = ser.read(ser.inWaiting()) # Clean buf
-print ("Listening for incomming SMS...")
-while True:
-    reply = ser.read(ser.inWaiting())
-    if reply != "":
-        ser.write("AT+CMGR=1\r") 
-        time.sleep(3)
-        reply = ser.read(ser.inWaiting())
-        print ("SMS received. Content:")
-        print (reply)
-        if "getStatus" in reply:
-            t = str(datetime.datetime.now())
-            if GPIO.input(P_BUTTON) == GPIO.HIGH:
-                state = "Button released"
+    try:
+        while True:
+            lcd.clear()
+            lcd.message('Place Card to\nregister')
+            id, text = reader.read()
+
+            cursor.execute("SELECT id FROM users WHERE rfid_uid=" + str(id))
+            result = cursor.fetchone()
+
+            if cursor.rowcount >= 1:
+                lcd.clear()
+                lcd.message("Overwrite\nexisting user?")
+                overwrite = input("Overwite (A/C)? ")
+
+                if overwrite[0] == 'A' or overwrite[0] == 'a':
+                    lcd.clear()
+                    lcd.message("Overwriting user.")
+                    time.sleep(1)
+                    sql_insert = "UPDATE users SET name = %s WHERE rfid_uid=%s"
+                    lcd.message("User Overwritten")
+                else:
+                    continue
             else:
-                state = "Button pressed"
-            ser.write('AT+CMGS="{{user_phone}}"\r',)
-            time.sleep(3)
-            msg = "Sending status at " + t + ":--" + state
-            print ("Sending SMS with status info:" + msg)
-            ser.write(msg + chr(26))
-        time.sleep(3)
-        ser.write('AT+CMGDA="DEL ALL"\r') # delete all
-        time.sleep(3)
-        ser.read(ser.inWaiting()) # Clear buf
-    time.sleep(5)
+                sql_insert = "INSERT INTO users (name, rfid_uid) VALUES (%s, %s)"
+            lcd.clear()
+            lcd.message('Enter new name')
+            new_name = input("Name: ")
+
+            cursor.execute(sql_insert, (new_name, id))
+
+            conn.commit()
+
+            lcd.clear()
+            lcd.message("User " + new_name + "\nSaved")
+            time.sleep(2)
+    finally:
+        GPIO.cleanup()
+        conn.close()
+
+        # RFID Write
+def RFID_Write():
+    conn = sqlite3.connect("database.sql")
+    cursor = conn.cursor()
+    reader = SimpleMFRC522()
+
+    try:
+        while True:
+            lcd.clear()
+            lcd.message('Place Card to\ngrant Access')
+            id, text = reader.read()
+
+            cursor.execute("Select id, name FROM users WHERE rfid_uid=" + str(id))
+            result = cursor.fetchone()
+
+            lcd.clear()
+
+            if cursor.rowcount >= 1:
+                lcd.message("Welcome " + result[1])
+                cursor.execute("INSERT INTO Reading_card (user_id) VALUES (%s)", (result[0],))
+                conn.commit()
+            else:
+                lcd.message("User does not exist.")
+            time.sleep(2)
+    finally:
+        GPIO.cleanup()
+        conn.close()
+
+#########################################   Fingerprint   ###############################################################
+
+# Finger Print
+
+# USB/serial converter
+try:
+    f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
+
+    if (f.verifyPassword() == False):
+        lcd.clear()
+        lcd.message("fingerprint error")
+        raise ValueError('The given fingerprint sensor password is wrong!')
+
+except Exception as e:
+    lcd.clear()
+    lcd.message("Exception message" + str(e))
+    print('Exception message: ' + str(e))
+    exit(1)
+
+
+def searchFinger():
+    try:
+        print('Waiting for finger...')
+        while (f.readImage() == False):
+            # pass
+            time.sleep(.5)
+            return
+        f.convertImage(0x01)
+        result = f.searchTemplate()
+        positionNumber = result[0]
+        accuracyScore = result[1]
+
+        if positionNumber == -1:
+            lcd.clear()
+            lcd.message("No match found !")
+            time.sleep(2)
+        else:
+            lcd.clear()
+            lcd.message("Found Template at postion #" + str(positionNumber))
+            time.sleep(2)
+    except Exception as e:
+        lcd.clear()
+        lcd.message("Operation Failed")
+        time.sleep(0.5)
+        lcd.clear()
+        lcd.message("Exception message: " + str(e))
+        exit(1)
+
+
+def enrollFinger():
+    lcd.clear()
+    lcd.message("Enrolling Finger...")
+    time.sleep(2)
+    print("waiting for finger....")
+    lcd.clear()
+    lcd.message("Place Finger")
+    while (f.readImage() == False):
+        pass
+    f.convertImage(0x01)  # convert to hexa decimal
+
+    result = f.searchTemplate()
+    positionNumber = result[0]
+    if (positionNumber >= 0):
+        lcd.clear()
+        lcd.message("Finger already Exist #" + str(positionNumber))
+        time.sleep(2)
+        return
+    lcd.clear()
+    lcd.message("Remove Finger")
+    time.sleep(2)
+    lcd.clear()
+    lcd.message("Place Finger again")
+    while (f.readImage() == False):
+        pass
+    f.convertImage(0x02)
+
+    if (f.compareCharacteristics() == 0):
+        print("Fingers not match")
+        lcd.clear()
+        lcd.message("Finger not Matched")
+        time.sleep(2)
+        return
+    f.createTemplate()
+    positionNumber = f.storeTemplate()
+    print('Finger enrolled successfully!')
+    lcd.clear()
+    lcd.message("Fnger enrolled successfuly !")
+    lcd.clear()
+    lcd.message("stored at pos: " + str(positionNumber) + "successfully")
+    time.sleep(2)
+
+#########################################   GSM   ###############################################################
+def GSM():
+    OTP = str(random.randit(0,9))
+    conn = sqlite3.connect("database.sql")
+    cursor = conn.cursor()
+    phone = cursor.execute("SELECT id from users WHERE phone_number=" + str(id))
+    GPIO.setmode(GPIO.BOARD)
+    port = serial.Serial(“/dev/ttyS0”, baudrate=9600, timeout=1)
+
+    port.write(b’AT\r’)
+    rcv = port.read(10)
+    print(rcv)
+    time.sleep(1)
+
+    port.write(b”AT+CMGF=1\r”)
+    print(“Text Mode Enabled…”)
+    time.sleep(3)
+
+    port.write(b’AT+CMGS=phone″\r’)
+    msg = “Your new PIN is ....$s ” % OTP 
+    lcd.clear()
+    lcd.message("sending message....")
+    time.sleep(3)
+    port.reset_output_buffer()      # clear the output buffer
+    time.sleep(1)
+    port.write(str.encode(msg+chr(26))) #concatenate the message
+    time.sleep(3)
+    lcd.clear()
+    lcd.message("Message sent,....")
+    sql_insert = "UPDATE users SET PIN = %s WHERE phone_number = %s"
+    cursor.execute(sql_insert,(OTP, phone))
+    conn.commit()
+    lcd.clear()
+    lcd.message("Password updated, check you phone")
 
 #########################################   MAIN   ###############################################################
 
 def main():
-    print("working")
+    print("Fingerprint....")
     keypadPressed = -1
     # main.fingerprint
     while 1:
-        GPIO.output(led, HIGH)
         lcd.clear()
+        enroll = lcd.message('enroll finger (D/d)')
+        time.sleep(0.5)
         lcd.message("Place Finger")
-        if GPIO.input(enrol) == 0:
-            GPIO.output(led, LOW)
+        if keypadPressed('A'):
             enrollFinger()
-        elif GPIO.input(delet) == 0:
-            GPIO.output(led, LOW)
-            while GPIO.input(delet) == 0:
+        elif keypadPressed('D'):
+            while keypadPressed('D'):
                 time.sleep(0.1)
-            deleteFinger()
+                deleteFinger()
         else:
             searchFinger()
 
