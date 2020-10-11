@@ -1,6 +1,6 @@
-from mfrc522 import MFRC522
+from Adafruit_Python_CharLCD import adafruit_Charlcd as LCD
 
-import Adafruit_CharLCD as LCD
+import MFRC522
 import Rpi.GPIO as gpio
 import smbus
 import adafruit_fingerprint
@@ -15,7 +15,8 @@ import socket
 import sqlite3
 import time
 
-from mdb import mdb_bill_silent_poll, mdb_bill_prel_messages, server_prel_messages, prel_serial_number, prel_serial_messages
+import MDB_protocol
+from MDB_protocol import server_prel_messages, prel_serial_number, mdb_bill_silent_poll, mdb_bill_prel_messages
 
 # GPIO pins and variables
 lcd = LCD.Adafruit_CharLCD(2, 24, 35, 36, 37, 38, 16, 2, 4)

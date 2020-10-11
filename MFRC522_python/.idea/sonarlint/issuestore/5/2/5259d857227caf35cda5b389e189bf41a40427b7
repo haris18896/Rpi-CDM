@@ -1,0 +1,9 @@
+
+Cpython:S5806"+Rename this variable; it shadows a builtin.(Ï˜Ñå
+Hpython:S5806<"+Rename this variable; it shadows a builtin.(“½×þÿÿÿÿ
+Cpython:S5806H"+Rename this variable; it shadows a builtin.(‚ãìª
+Hpython:S5806"+Rename this variable; it shadows a builtin.(Ÿè­ºúÿÿÿÿ
+tpython:S117B"XRename this local variable "TagType" to match the regular expression ^[_a-z][a-z0-9_]*$.(—‚Ñýýÿÿÿÿ
+tpython:S117"XRename this local variable "TagType" to match the regular expression ^[_a-z][a-z0-9_]*$.(—‚Ñýýÿÿÿÿ
+tpython:S117&"XRename this local variable "TagType" to match the regular expression ^[_a-z][a-z0-9_]*$.(—‚Ñýýÿÿÿÿ
+Cpython:S5806,"+Rename this variable; it shadows a builtin.(‚ãìª
